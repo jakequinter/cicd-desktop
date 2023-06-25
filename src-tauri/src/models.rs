@@ -17,14 +17,22 @@ pub struct User {
     pub name: String,
 }
 
+#[derive(Deserialize, Serialize)]
+pub struct Repo {
+    id: u32,
+    name: String,
+}
+
 pub enum Url {
     WithBaseUrl(&'static str),
+    WithParams(String)
 }
 
 impl Url {
     pub fn value(self) -> String {
         match self {
             Url::WithBaseUrl(url) => format!("https://api.github.com{url}"),
+            Url::WithParams(url) => format!("https://api.github.com{}", url),
         }
     }
 }
