@@ -5,12 +5,17 @@ import { useState } from 'react';
 import useAuth from '@/hooks/useAuth';
 
 export default function LoginPage() {
-  const { authGitHubToken } = useAuth();
+  const { authGitHubToken, error, setError } = useAuth();
   const [token, setToken] = useState<string>('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     authGitHubToken(token);
+  };
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(null);
+    setToken(e.target.value);
   };
 
   return (
@@ -26,8 +31,9 @@ export default function LoginPage() {
             className="rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 hover:ring-gray-400 focus:ring-gray-400 sm:text-sm sm:leading-6"
             placeholder="Enter your GitHub token"
             value={token}
-            onChange={e => setToken(e.target.value)}
+            onChange={handleOnChange}
           />
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
 
         <button

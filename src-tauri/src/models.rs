@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use crate::error::TauriError;
 
-pub type APIResult<T, E = TauriError> = Result<T, E>;
+pub type ApiResult<T, E = TauriError> = Result<T, E>;
 
 #[derive(Deserialize, Serialize)]
 pub struct Org {
@@ -10,14 +10,20 @@ pub struct Org {
     avatar_url: String,
 }
 
-pub enum URL {
+#[derive(Deserialize, Serialize)]
+pub struct User {
+    pub avatar_url: String,
+    pub name: String,
+}
+
+pub enum Url {
     WithBaseUrl(&'static str),
 }
 
-impl URL {
+impl Url {
     pub fn value(self) -> String {
         match self {
-            URL::WithBaseUrl(url) => format!("https://api.github.com/{}", url),
+            Url::WithBaseUrl(url) => format!("https://api.github.com/{}", url),
         }
     }
 }
