@@ -4,3 +4,8 @@ export type Org = {
   login: string;
   url: string;
 };
+
+export type Repo = {
+  id: number;
+  name: string;
+};
