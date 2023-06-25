@@ -1,5 +1,6 @@
 export type Org = {
-  id: number;
-  url: string;
   avatar_url: string;
+  id: number;
+  login: string;
+  url: string;
 };
