@@ -3,6 +3,12 @@ use crate::api::get_request;
 use crate::models::{ApiResult, Org, Repo, Url, User};
 
 #[tauri::command]
+pub fn greet(name: &str) -> String {
+    format!("Hello, {}! You've been greeted from Rust!", name)
+}
+
+
+#[tauri::command]
 pub fn get_user_orgs(token: &str) -> ApiResult<Vec<Org>> {
     let response = get_request(Url::WithBaseUrl("/user/orgs"), token)?;
     let data: Vec<_> = serde_json::from_str(&response).unwrap();

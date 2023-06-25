@@ -1,3 +1,13 @@
+'use client';
+
+import { useQuery } from '@/src/rspc';
+
 export default function Home() {
-  return <main className="">hello</main>;
+  const { data, isLoading, error } = useQuery(['greet', 'yooooooooooooooooo tauriiiiiiiiiiii']);
+
+  return (
+    <main className="">
+      <p>{data}</p>
+    </main>
+  );
 }

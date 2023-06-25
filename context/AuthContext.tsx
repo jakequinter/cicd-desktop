@@ -32,11 +32,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!token) {
-      router.push('/login');
-    }
-  }, [router, token]);
+  // useEffect(() => {
+  //   if (!token) {
+  //     router.push('/login');
+  //   }
+  // }, [router, token]);
 
   const authGitHubToken = async (token: string) => {
     const user = await invoke<User>('validate_token', { token });
