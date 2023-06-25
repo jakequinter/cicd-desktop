@@ -6,6 +6,7 @@ pub type ApiResult<T, E = TauriError> = Result<T, E>;
 #[derive(Deserialize, Serialize)]
 pub struct Org {
     id: u32,
+    login: String,
     url: String,
     avatar_url: String,
 }
