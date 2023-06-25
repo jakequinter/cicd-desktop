@@ -13,7 +13,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <div className="flex h-screen flex-grow flex-col overflow-y-auto">
+    <div className="flex h-screen flex-grow flex-col overflow-y-auto bg-gray-100">
       <h1 className="p-4 text-center text-3xl font-semibold text-orange-500">flowlog</h1>
       <div className="flex flex-grow flex-col">
         <nav className="mt-1 px-2" aria-label="Sidebar">
@@ -22,8 +22,9 @@ export default function Nav() {
               <Fragment key={org.id}>
                 <li>
                   <Link
-                    href="/"
+                    href={`/${org.login}`}
                     className={cn(
+                      pathname === `/${org.login}` ? `bg-gray-200 text-gray-900` : '',
                       'group relative flex w-full items-center rounded-md p-1.5 text-left hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-0'
                     )}
                   >

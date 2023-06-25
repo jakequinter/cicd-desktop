@@ -24,7 +24,7 @@ pub enum Url {
 impl Url {
     pub fn value(self) -> String {
         match self {
-            Url::WithBaseUrl(url) => format!("https://api.github.com/{}", url),
+            Url::WithBaseUrl(url) => format!("https://api.github.com{url}"),
         }
     }
 }

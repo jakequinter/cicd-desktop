@@ -44,7 +44,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (user) {
       setToken(token);
       setUser(user);
-      router.push('/');
     } else {
       setError('Invalid token');
     }

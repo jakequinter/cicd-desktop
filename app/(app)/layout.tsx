@@ -1,7 +1,5 @@
 import { ReactNode } from 'react';
 
-import { OrgProvider } from '@/context/OrgContext';
-
 import Container from '@/components/Container';
 
 type Props = {
@@ -9,9 +7,5 @@ type Props = {
 };
 
 export default async function AppLayout({ children }: Props) {
-  return (
-    <OrgProvider>
-      <Container>{children}</Container>
-    </OrgProvider>
-  );
+  return <Container>{children}</Container>;
 }
