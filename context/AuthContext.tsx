@@ -33,10 +33,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    setToken(token);
+
     if (!token) {
       router.push('/login');
     }
   }, [router, token]);
+
+  useEffect(() => {
+    const handleCookieChange = () => {
+      const newToken = localStorage.getItem('token');
+      setToken(newToken);
+    };
+
+    window.addEventListener('storage', handleCookieChange);
+
+    return () => {
+      window.removeEventListener('storage', handleCookieChange);
+    };
+  }, []);
 
   const authGitHubToken = async (token: string) => {
     const user = await invoke<User>('validate_token', { token });
@@ -44,6 +60,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (user) {
       setToken(token);
       setUser(user);
+      localStorage.setItem('token', token);
     } else {
       setError('Invalid token');
     }
