@@ -15,7 +15,7 @@ export default function Container({ children }: Props) {
         </div>
       </div>
       <div className="flex flex-1 flex-col pl-44">
-        <main className="min-h-screen flex-1 p-8">{children}</main>
+        <main className="min-h-screen flex-1 p-4">{children}</main>
       </div>
     </div>
   );

@@ -3,9 +3,9 @@ import { useContext } from 'react';
 import { OrgContext } from '@/context/OrgContext';
 
 const useOrgs = () => {
-  const { orgs, fetchUserOrgs } = useContext(OrgContext);
+  const { orgs, org, fetchUserOrgs } = useContext(OrgContext);
 
-  return { orgs, fetchUserOrgs };
+  return { orgs, org, fetchUserOrgs };
 };
 
 export default useOrgs;

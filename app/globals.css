@@ -2,3 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+.markdown-body {
+  background-color: #fff !important;
+  color: #52525b !important;
+  font-size: 0.875rem !important;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+  color: #18181b !important;
+}
+
+.markdown-body h1 {
+  font-size: 1.5rem !important;
+  border-bottom: 1px solid #d4d4d8 !important;
+}
+
+.markdown-body h2 {
+  font-size: 1.125rem !important;
+  border-bottom: 1px solid #d4d4d8 !important;
+}
+
+.markdown-body h3 {
+  font-size: 1rem !important;
+}
+
+.markdown-body a {
+  color: #3b82f6 !important;
+}
+
+.markdown-body code {
+  background-color: #f4f4f5 !important;
+}
+
+.markdown-body pre {
+  background-color: #f4f4f5 !important;
+}
+
+.markdown-body pre code {
+  color: #27272a !important;
+}
+
+.markdown-body ul {
+  list-style-type: disc !important;
+}

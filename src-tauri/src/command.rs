@@ -1,6 +1,5 @@
-
 use crate::api::get_request;
-use crate::models::{ApiResult, Org, Repo, Url, User};
+use crate::models::{ApiResult, Org, Repo, Url, User, RepoReadme};
 
 #[tauri::command]
 pub fn get_user_orgs(token: &str) -> ApiResult<Vec<Org>> {
@@ -30,7 +29,18 @@ pub fn validate_token(token: &str) -> ApiResult<Option<User>> {
 #[tauri::command]
 pub fn get_org_repos(token: &str, org_name: &str) -> ApiResult<Vec<Repo>> {
     let response = get_request(Url::WithParams(format!("/orgs/{org_name}/repos")), token)?;
-    let data: Vec<_> = serde_json::from_str(&response).unwrap();
+    let mut data: Vec<Repo> = serde_json::from_str(&response).unwrap();
+    data.sort_by(|a, b| b.updated_at.cmp(&a.updated_at));
+
 
     Ok(data)
 }
+
+#[tauri::command]
+pub fn get_readme(token: &str, org_name: &str, repo_name: &str) -> ApiResult<RepoReadme> {
+    let response = get_request(Url::WithParams(format!("/repos/{org_name}/{repo_name}/readme")), token)?;
+    let data: RepoReadme = serde_json::from_str(&response).unwrap();
+
+    Ok(data)
+}
+

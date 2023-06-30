@@ -8,4 +8,9 @@ export type Org = {
 export type Repo = {
   id: number;
   name: string;
+  updated_at: string;
+};
+
+export type RepoReadMe = {
+  content: string;
 };
