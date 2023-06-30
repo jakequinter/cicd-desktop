@@ -2,7 +2,7 @@
 
 import { createContext, ReactNode, useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { invoke } from '@tauri-apps/api/tauri';
+import { client } from '@/src/rspc';
 
 import type { Org } from '@/types/org';
 import useAuth from '@/hooks/useAuth';
@@ -30,7 +30,10 @@ export const OrgProvider = ({ children }: OrgProviderProps) => {
   const [org, setOrg] = useState<Org | null>(null);
 
   const fetchUserOrgs = useCallback(async () => {
-    const userOrgs = await invoke<Org[]>('get_user_orgs', { token });
+    if (!token) return;
+
+    const userOrgs = await client.query(['get_user_orgs', token]);
+    console.log('userOrgs', userOrgs);
     setOrgs(userOrgs);
 
     if (userOrgs.length > 0) {

@@ -1,6 +1,10 @@
+use reqwest::Response;
 use reqwest::header::{ACCEPT, AUTHORIZATION, HeaderMap, HeaderValue, USER_AGENT};
 
-use crate::models::{ApiResult, Url};
+use crate::models::{Url};
+use crate::error::TauriError;
+
+pub type ApiResult<T, E = TauriError> = Result<T, E>;
 
 fn construct_headers(token: &str) -> HeaderMap {
     let mut headers = HeaderMap::new();
@@ -16,7 +20,20 @@ fn construct_headers(token: &str) -> HeaderMap {
     headers
 }
 
-pub fn get_request(url: Url, token: &str) -> ApiResult<String> {
+pub async fn get_request(url: Url, token: &str) -> ApiResult<Response> {
+    let url = url.value();
+    let client = reqwest::Client::new();
+    let response = client
+        .get(url)
+        .headers(construct_headers(token))
+        .send()
+        .await?;
+
+
+    Ok(response)
+}
+
+pub fn get_request_old(url: Url, token: &str) -> ApiResult<String> {
     let url = url.value();
     let client = reqwest::blocking::Client::new();
     let response = client.get(url).headers(construct_headers(token)).send()?;
@@ -24,4 +41,3 @@ pub fn get_request(url: Url, token: &str) -> ApiResult<String> {
 
     Ok(response_body)
 }
-

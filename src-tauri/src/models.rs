@@ -1,7 +1,4 @@
 use serde::{Deserialize, Serialize};
-use crate::error::TauriError;
-
-pub type ApiResult<T, E = TauriError> = Result<T, E>;
 
 #[derive(Deserialize, Serialize)]
 pub struct User {

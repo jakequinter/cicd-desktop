@@ -1,46 +1,83 @@
-use crate::api::get_request;
-use crate::models::{ApiResult, Org, Repo, Url, User, RepoReadme};
+use crate::api::{get_request};
+use crate::models::{Org, Repo, RepoReadme, Url, User};
+use reqwest::Client;
+use rspc::ErrorCode;
+use serde_json::Value;
+use crate::main::Context;
 
 #[tauri::command]
-pub fn get_user_orgs(token: &str) -> ApiResult<Vec<Org>> {
-    let response = get_request(Url::WithBaseUrl("/user/orgs"), token)?;
-    let data: Vec<_> = serde_json::from_str(&response).unwrap();
+pub async fn get_user_orgs(token: String) -> Result<Value, rspc::Error> {
+    let response = get_request(Url::WithBaseUrl("/user/orgs"), &token).await;
+    match response {
+        Ok(response) => {
+            let json = response.json().await;
 
-    Ok(data)
-}
-
-#[tauri::command]
-pub fn validate_token(token: &str) -> ApiResult<Option<User>> {
-    let response = get_request(Url::WithBaseUrl("/user"), token)?;
-    let data: serde_json::Value = serde_json::from_str(&response).unwrap();
-
-    if data["login"].is_string() {
-        let user = User {
-            avatar_url: data["avatar_url"].to_string(),
-            name: data["login"].to_string(),
-        };
-
-        Ok(Some(user))
-    } else {
-        Ok(None)
+            match json {
+                Ok(json) => Ok(json),
+                Err(err) => Err(rspc::Error::new(
+                    ErrorCode::InternalServerError,
+                    err.to_string(),
+                )),
+            }
+        }
+        Err(err) => Err(rspc::Error::new(
+            ErrorCode::InternalServerError,
+            err.to_string(),
+        )),
     }
 }
 
 #[tauri::command]
-pub fn get_org_repos(token: &str, org_name: &str) -> ApiResult<Vec<Repo>> {
-    let response = get_request(Url::WithParams(format!("/orgs/{org_name}/repos")), token)?;
-    let mut data: Vec<Repo> = serde_json::from_str(&response).unwrap();
-    data.sort_by(|a, b| b.updated_at.cmp(&a.updated_at));
+pub async fn validate_token(token: String) -> Result<Value, rspc::Error> {
+    let response = get_request(Url::WithBaseUrl("/user"), &token).await;
+    match response {
+        Ok(response) => {
+            let json = response.json().await;
 
-
-    Ok(data)
+            match json {
+                Ok(json) => Ok(json),
+                Err(err) => Err(rspc::Error::new(
+                    ErrorCode::InternalServerError,
+                    err.to_string(),
+                )),
+            }
+        }
+        Err(err) => Err(rspc::Error::new(
+            ErrorCode::InternalServerError,
+            err.to_string(),
+        )),
+    }
 }
 
 #[tauri::command]
-pub fn get_readme(token: &str, org_name: &str, repo_name: &str) -> ApiResult<RepoReadme> {
-    let response = get_request(Url::WithParams(format!("/repos/{org_name}/{repo_name}/readme")), token)?;
-    let data: RepoReadme = serde_json::from_str(&response).unwrap();
+pub async fn get_org_repos(_: Context, token: String, org_name: String) -> Result<Value, rspc::Error> {
+    let response = get_request(Url::WithParams(format!("/orgs/{org_name}/repos")), &token).await;
+    match response {
+        Ok(response) => {
+            let json = response.json().await;
 
-    Ok(data)
+            match json {
+                Ok(data) => Ok(data),   
+                Err(err) => Err(rspc::Error::new(
+                    ErrorCode::InternalServerError,
+                    err.to_string(),
+                )),
+            }
+        }
+        Err(err) => Err(rspc::Error::new(
+            ErrorCode::InternalServerError,
+            err.to_string(),
+        )),
+    }
+
+
 }
 
+// #[tauri::command]
+// pub fn get_readme(token: &str, org_name: &str, repo_name: &str) -> ApiResult<RepoReadme> {
+//     let response = get_request(Url::WithParams(format!("/repos/{org_name}/{repo_name}/readme")), token)?;
+//     let data: RepoReadme = serde_json::from_str(&response).unwrap();
+//
+//     Ok(data)
+// }
+//

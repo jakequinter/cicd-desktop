@@ -2,7 +2,7 @@
 
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { invoke } from '@tauri-apps/api/tauri';
+import { client } from '@/src/rspc';
 
 import type { User } from '@/types/user';
 
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const authGitHubToken = async (token: string) => {
-    const user = await invoke<User>('validate_token', { token });
+    const user = await client.query(['validate_token', token]);
 
     if (user) {
       setToken(token);
