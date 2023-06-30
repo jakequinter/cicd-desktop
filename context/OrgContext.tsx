@@ -9,11 +9,13 @@ import useAuth from '@/hooks/useAuth';
 
 type OrgContextProps = {
   orgs: Org[];
+  org: Org | null;
   fetchUserOrgs: (token: string) => Promise<void>;
 };
 
 export const OrgContext = createContext<OrgContextProps>({
   orgs: [],
+  org: null,
   fetchUserOrgs: async () => {},
 });
 
@@ -25,12 +27,14 @@ export const OrgProvider = ({ children }: OrgProviderProps) => {
   const router = useRouter();
   const { token } = useAuth();
   const [orgs, setOrgs] = useState<Org[]>([]);
+  const [org, setOrg] = useState<Org | null>(null);
 
   const fetchUserOrgs = useCallback(async () => {
     const userOrgs = await invoke<Org[]>('get_user_orgs', { token });
     setOrgs(userOrgs);
 
     if (userOrgs.length > 0) {
+      setOrg(userOrgs[0]);
       router.push(`/${userOrgs[0].login}`);
     }
   }, [router, token]);
@@ -45,6 +49,7 @@ export const OrgProvider = ({ children }: OrgProviderProps) => {
     <OrgContext.Provider
       value={{
         orgs,
+        org,
         fetchUserOrgs,
       }}
     >

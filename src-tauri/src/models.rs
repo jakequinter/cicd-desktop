@@ -4,6 +4,12 @@ use crate::error::TauriError;
 pub type ApiResult<T, E = TauriError> = Result<T, E>;
 
 #[derive(Deserialize, Serialize)]
+pub struct User {
+    pub avatar_url: String,
+    pub name: String,
+}
+
+#[derive(Deserialize, Serialize)]
 pub struct Org {
     id: u32,
     login: String,
@@ -12,15 +18,15 @@ pub struct Org {
 }
 
 #[derive(Deserialize, Serialize)]
-pub struct User {
-    pub avatar_url: String,
-    pub name: String,
-}
-
-#[derive(Deserialize, Serialize)]
 pub struct Repo {
     id: u32,
     name: String,
+    pub updated_at: String,
+}
+
+#[derive(Deserialize, Serialize)]
+pub struct RepoReadme {
+    pub content: String,
 }
 
 pub enum Url {

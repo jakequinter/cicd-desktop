@@ -38,7 +38,7 @@ export default function LoginPage() {
 
         <button
           type="submit"
-          className="mt-4 w-full rounded-full bg-orange-400 py-1.5 text-orange-50 hover:bg-orange-500"
+          className="mt-4 w-full rounded-full bg-orange-400 py-1.5 text-white hover:bg-orange-500"
         >
           Enter
         </button>
