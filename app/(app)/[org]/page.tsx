@@ -1,28 +1,34 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { invoke } from '@tauri-apps/api/tauri';
+import { client, useQuery } from '@/src/rspc';
 
-import { Repo } from '@/types/org';
-import useAuth from '@/hooks/useAuth';
+export default function Home() {
+  const [posts, setPosts] = useState([]);
 
-export default function OrgPage({ params }: { params: { org: string } }) {
-  const { token } = useAuth();
-  const [repos, setRepos] = useState<Repo[]>([]);
+  const { data, isLoading, error } = useQuery([
+    'get_repos',
+    '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',
+  ]);
 
-  useEffect(() => {
-    invoke<Repo[]>('get_org_repos', { token, orgName: params.org }).then(repos => {
-      setRepos(repos);
-    });
-  }, [params.org, token]);
+  // useEffect(() => {
+  //   const getPosts = async () => {
+  //     const response = await client.query(['my_custom_command', 'hi']);
+  //     const data = JSON.parse(response);
+  //     setPosts(data);
+  //   };
+  //
+  //   getPosts();
+  // }, []);
+  //
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div>
-      <ul>
-        {repos.map(repo => (
-          <li key={repo.id}>{repo.name}</li>
-        ))}
-      </ul>
-    </div>
+    <main className="">
+      <a href="/">Login</a>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </main>
   );
 }

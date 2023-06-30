@@ -2,6 +2,8 @@
 
 export type Procedures = {
     queries: 
+        { key: "get_posts", input: string, result: any } | 
+        { key: "get_repos", input: string, result: any } | 
         { key: "greet", input: string, result: string },
     mutations: never,
     subscriptions: never

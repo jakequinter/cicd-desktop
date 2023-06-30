@@ -2,10 +2,6 @@
 use crate::api::get_request;
 use crate::models::{ApiResult, Org, Repo, Url, User};
 
-#[tauri::command]
-pub fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
 
 
 #[tauri::command]
