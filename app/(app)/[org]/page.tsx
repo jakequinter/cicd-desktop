@@ -1,11 +1,9 @@
 'use client';
 
-import { useRef } from 'react';
-import { invoke } from '@tauri-apps/api/tauri';
 import useSWR from 'swr';
 
 import type { Repo } from '@/types/org';
-import { fetcher } from '@/lib/fetcher';
+import fetcher from '@/lib/fetcher';
 import useAuth from '@/hooks/useAuth';
 
 import RepoItem from './RepoItem';
