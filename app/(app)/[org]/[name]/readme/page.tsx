@@ -1,31 +1,31 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { invoke } from '@tauri-apps/api/tauri';
 import ReactMarkdown from 'react-markdown';
+import useSWR from 'swr';
 
-import type { RepoReadMe } from '@/types/org';
+import fetcher from '@/lib/fetcher';
 import useAuth from '@/hooks/useAuth';
 
 export default function ReadMePage({ params }: { params: { name: string; org: string } }) {
   const { token } = useAuth();
   const router = useRouter();
-  const [readmeContent, setReadmeContent] = useState('');
   const { org, name } = params;
 
-  useEffect(() => {
-    invoke<RepoReadMe>('get_readme', { token, orgName: org, repoName: name }).then(readme => {
-      const decodedContent = atob(readme.content);
-      setReadmeContent(decodedContent);
-    });
-  }, [token, org, name]);
+  const {
+    data: readme,
+    isLoading,
+    error,
+  } = useSWR<string>(['get_readme', { token, orgName: org, repoName: name }], fetcher);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error || !readme) return <div>Error: {error.message}</div>;
 
   return (
     <div>
       <button onClick={() => router.back()}>Back</button>
       <div className="markdown-body p-4">
-        <ReactMarkdown>{readmeContent}</ReactMarkdown>
+        <ReactMarkdown>{readme}</ReactMarkdown>
       </div>
     </div>
   );

@@ -37,10 +37,21 @@ pub fn get_org_repos(token: &str, org_name: &str) -> ApiResult<Vec<Repo>> {
 }
 
 #[tauri::command]
-pub fn get_readme(token: &str, org_name: &str, repo_name: &str) -> ApiResult<RepoReadme> {
+pub fn get_readme(token: &str, org_name: &str, repo_name: &str) -> ApiResult<Option<String>> {
     let response = get_request(Url::WithParams(format!("/repos/{org_name}/{repo_name}/readme")), token)?;
-    let data: RepoReadme = serde_json::from_str(&response).unwrap();
+    let encoded: RepoReadme = serde_json::from_str(&response).unwrap();
+    let encoded = encoded.content.replace("\n", "");  
 
-    Ok(data)
+    let decoded = match base64::decode(&encoded) {
+        Ok(bytes) => {
+            let readme = String::from_utf8_lossy(&bytes).to_string();
+            Some(readme)
+        }
+        Err(err) => {
+            println!("Error decoding readme: {}", err);
+            None
+        }
+    };
+
+    Ok(decoded)
 }
-
