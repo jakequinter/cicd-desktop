@@ -27,7 +27,7 @@ export default function RepoItem({ repo }: Props) {
         </div>
         <div>
           <Link
-            href={`/${org?.login}/${repo.name}/readme`}
+            href={`/${org?.login}/${repo.name}/actions`}
             className="inline-flex items-center gap-x-1 rounded-full bg-orange-400 px-2 py-1 text-sm font-medium text-white hover:bg-orange-500"
           >
             <GitBranch size={14} />

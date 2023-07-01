@@ -1,5 +1,5 @@
 use crate::api::get_request;
-use crate::models::{ApiResult, Org, Repo, Url, User, RepoReadme};
+use crate::models::{Action, ApiResult, Org, Repo, Url, User, RepoReadme};
 
 #[tauri::command]
 pub fn get_user_orgs(token: &str) -> ApiResult<Vec<Org>> {
@@ -55,3 +55,11 @@ pub fn get_readme(token: &str, org_name: &str, repo_name: &str) -> ApiResult<Opt
 
     Ok(decoded)
 }
+
+#[tauri::command]
+pub fn get_repo_actions(token: &str, org_name: &str, repo_name: &str) -> ApiResult<Action> {
+    let response = get_request(Url::WithParams(format!("/repos/{org_name}/{repo_name}/actions/runs?per_page=5")), token)?;
+    let data = serde_json::from_str(&response).unwrap();
+    
+    Ok(data)
+} 

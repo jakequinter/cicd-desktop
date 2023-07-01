@@ -1,5 +1,5 @@
-use serde::{Deserialize, Serialize};
 use crate::error::TauriError;
+use serde::{Deserialize, Serialize};
 
 pub type ApiResult<T, E = TauriError> = Result<T, E>;
 
@@ -11,10 +11,10 @@ pub struct User {
 
 #[derive(Deserialize, Serialize)]
 pub struct Org {
+    avatar_url: String,
     id: u32,
     login: String,
     url: String,
-    avatar_url: String,
 }
 
 #[derive(Deserialize, Serialize)]
@@ -29,9 +29,25 @@ pub struct RepoReadme {
     pub content: String,
 }
 
+#[derive(Deserialize, Serialize)]
+struct WorkflowRun {
+    conclusion: String,
+    created_at: String,
+    id: u64,
+    name: String,
+    status: String,
+    url: String,
+}
+
+#[derive(Deserialize, Serialize)]
+pub struct Action {
+    total_count: u32,
+    workflow_runs: Vec<WorkflowRun>,
+}
+
 pub enum Url {
     WithBaseUrl(&'static str),
-    WithParams(String)
+    WithParams(String),
 }
 
 impl Url {

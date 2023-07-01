@@ -11,6 +11,16 @@ export type Repo = {
   updated_at: string;
 };
 
-export type RepoReadMe = {
-  content: string;
+export type WorkflowRun = {
+  conclusion: string;
+  created_at: string;
+  id: number;
+  name: string;
+  status: string;
+  url: string;
+};
+
+export type Action = {
+  totalCount: number;
+  workflow_runs: WorkflowRun[];
 };
