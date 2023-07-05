@@ -20,15 +20,14 @@ export default function ActionsPage({ params }: { params: { name: string; org: s
   if (error || !data) return <div>failed to load</div>;
 
   return (
-    <ul>
+    <ul className="space-y-2">
       {data.workflow_runs.map(action => (
         <ActionItem
           key={action.id}
           conclusion={action.conclusion}
           created_at={action.created_at}
           name={action.name}
-          status={action.status}
-          url={action.url}
+          url={action.html_url}
         />
       ))}
     </ul>

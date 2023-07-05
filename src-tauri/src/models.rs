@@ -35,8 +35,7 @@ struct WorkflowRun {
     created_at: String,
     id: u64,
     name: String,
-    status: String,
-    url: String,
+    html_url: String,
 }
 
 #[derive(Deserialize, Serialize)]

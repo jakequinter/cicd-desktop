@@ -28,9 +28,8 @@ pub fn validate_token(token: &str) -> ApiResult<Option<User>> {
 
 #[tauri::command]
 pub fn get_org_repos(token: &str, org_name: &str) -> ApiResult<Vec<Repo>> {
-    let response = get_request(Url::WithParams(format!("/orgs/{org_name}/repos")), token)?;
-    let mut data: Vec<Repo> = serde_json::from_str(&response).unwrap();
-    data.sort_by(|a, b| b.updated_at.cmp(&a.updated_at));
+    let response = get_request(Url::WithParams(format!("/orgs/{org_name}/repos?sort=pushed")), token)?;
+    let data: Vec<Repo> = serde_json::from_str(&response).unwrap();
 
 
     Ok(data)
@@ -58,7 +57,7 @@ pub fn get_readme(token: &str, org_name: &str, repo_name: &str) -> ApiResult<Opt
 
 #[tauri::command]
 pub fn get_repo_actions(token: &str, org_name: &str, repo_name: &str) -> ApiResult<Action> {
-    let response = get_request(Url::WithParams(format!("/repos/{org_name}/{repo_name}/actions/runs?per_page=5")), token)?;
+    let response = get_request(Url::WithParams(format!("/repos/{org_name}/{repo_name}/actions/runs")), token)?;
     let data = serde_json::from_str(&response).unwrap();
     
     Ok(data)
