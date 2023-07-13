@@ -23,7 +23,9 @@ export default function ReadMePage({ params }: { params: { name: string; org: st
 
   return (
     <div>
-      <button onClick={() => router.back()}>Back</button>
+      <button className="hover:underline" onClick={() => router.back()}>
+        Back
+      </button>
       <div className="markdown-body p-4">
         <ReactMarkdown>{readme}</ReactMarkdown>
       </div>

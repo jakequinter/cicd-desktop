@@ -1,30 +1,35 @@
 import cn from '@/utils/cn';
 
 type Props = {
-  conclusion: string;
+  conclusion?: string;
   created_at: string;
   name: string;
   url: string;
+  status: string;
 };
 
-export default function ActionItem({ conclusion, created_at, name, url }: Props) {
+export default function ActionItem({ conclusion, created_at, name, url, status }: Props) {
   const handleConclusionColor = () => {
-    switch (conclusion) {
-      case 'success':
-        return ['ring-emerald-300', 'bg-emerald-50', 'text-emerald-800', 'bg-emerald-500'];
-      case 'action_required':
-      case 'failure':
-      case 'timed_out':
-        return ['ring-rose-300', 'bg-rose-50', 'text-rose-800', 'bg-rose-500'];
-      case 'in_progress':
-      case 'skipped':
-      case 'queued':
-      case 'requested':
-      case 'waiting':
-      case 'pending':
-        return ['yellow-300', 'bg-yellow-50', 'text-yellow-800', 'bg-yellow-500'];
-      default:
-        return ['ring-gray-300', 'bg-gray-50', 'text-gray-800', 'bg-gray-500'];
+    if (status === 'in_progress') {
+      return ['yellow-300', 'bg-yellow-50', 'text-yellow-800', 'bg-yellow-500'];
+    } else {
+      switch (conclusion) {
+        case 'success':
+          return ['ring-emerald-300', 'bg-emerald-50', 'text-emerald-800', 'bg-emerald-500'];
+        case 'action_required':
+        case 'failure':
+        case 'timed_out':
+          return ['ring-rose-300', 'bg-rose-50', 'text-rose-800', 'bg-rose-500'];
+        case 'in_progress':
+        case 'skipped':
+        case 'queued':
+        case 'requested':
+        case 'waiting':
+        case 'pending':
+          return ['yellow-300', 'bg-yellow-50', 'text-yellow-800', 'bg-yellow-500'];
+        default:
+          return ['ring-gray-300', 'bg-gray-50', 'text-gray-800', 'bg-gray-500'];
+      }
     }
   };
 
@@ -43,7 +48,7 @@ export default function ActionItem({ conclusion, created_at, name, url }: Props)
           >
             <div className={cn(handleConclusionColor()[3], 'h-2 w-2 rounded-full')} />
 
-            {conclusion}
+            {conclusion ?? status}
           </div>
         </div>
 

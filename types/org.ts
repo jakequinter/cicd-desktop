@@ -12,11 +12,12 @@ export type Repo = {
 };
 
 export type WorkflowRun = {
-  conclusion: string;
+  conclusion?: string;
   created_at: string;
   id: number;
   name: string;
   html_url: string;
+  status: string;
 };
 
 export type Action = {

@@ -31,11 +31,12 @@ pub struct RepoReadme {
 
 #[derive(Deserialize, Serialize)]
 struct WorkflowRun {
-    conclusion: String,
+    conclusion: Option<String>,
     created_at: String,
     id: u64,
     name: String,
     html_url: String,
+    status: String
 }
 
 #[derive(Deserialize, Serialize)]
