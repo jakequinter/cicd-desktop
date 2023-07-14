@@ -48,8 +48,10 @@ export default function RepoItem({ repo }: Props) {
       }
     } else if (diffDays >= 1 && diffDays < 2) {
       return 'Updated yesterday';
-    } else {
+    } else if (diffDays > 2 && diffDays < 365) {
       return `Updated ${Math.floor(diffDays)} days ago`;
+    } else {
+      return `Updated ${Math.floor(diffDays / 365)} years ago`;
     }
   }
 
