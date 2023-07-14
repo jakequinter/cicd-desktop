@@ -20,8 +20,13 @@ pub struct Org {
 #[derive(Deserialize, Serialize)]
 pub struct Repo {
     id: u32,
+    language: Option<String>,
     name: String,
-    pub updated_at: String,
+    open_issues_count: u32,
+    pushed_at: String,
+    stargazers_count: u32,
+    visibility: String,
+    watchers_count: u32,
 }
 
 #[derive(Deserialize, Serialize)]

@@ -7,8 +7,13 @@ export type Org = {
 
 export type Repo = {
   id: number;
+  language?: string;
   name: string;
-  updated_at: string;
+  open_issues_count: number;
+  pushed_at: string;
+  stargazers_count: number;
+  visibility: string;
+  watchers_count: number;
 };
 
 export type WorkflowRun = {

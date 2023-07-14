@@ -34,7 +34,7 @@ export default function ActionItem({ conclusion, created_at, name, url, status }
   };
 
   return (
-    <li className="flex items-center justify-between rounded-md bg-gray-100 p-2 shadow">
+    <li className="flex items-center justify-between rounded-md bg-white p-2 shadow">
       <div className="min-w-0">
         <div className="flex items-start gap-x-2">
           <p className="text-sm font-semibold leading-6 text-gray-900">{name}</p>
@@ -60,9 +60,9 @@ export default function ActionItem({ conclusion, created_at, name, url, status }
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
+          className="hidden rounded-full bg-gray-50 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-100 sm:block"
         >
-          View project<span className="sr-only">, {name}</span>
+          View<span className="sr-only">, {name}</span>
         </a>
       </div>
     </li>
