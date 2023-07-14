@@ -35,10 +35,7 @@ export default function RepoItem({ repo }: Props) {
     const diff = Math.abs(now.getTime() - updated.getTime());
     const diffDays = diff / (1000 * 3600 * 24);
 
-    console.log(date, diffDays);
-
     if (diffDays < 1) {
-      // get difference in hours
       const diffHours = Math.ceil(diff / (1000 * 3600));
 
       if (diffHours === 1) {
