@@ -7,17 +7,29 @@ export type Org = {
 
 export type Repo = {
   id: number;
+  language?: string;
   name: string;
-  updated_at: string;
+  open_issues_count: number;
+  pushed_at: string;
+  stargazers_count: number;
+  visibility: string;
+  watchers_count: number;
+};
+
+type Actor = {
+  login: string;
 };
 
 export type WorkflowRun = {
+  actor: Actor;
   conclusion?: string;
   created_at: string;
-  id: number;
-  name: string;
   html_url: string;
+  id: number;
+  login: string;
+  name: string;
   status: string;
+  updated_at: string;
 };
 
 export type Action = {

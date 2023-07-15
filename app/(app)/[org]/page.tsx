@@ -24,7 +24,7 @@ export default function OrgPage({ params }: { params: { org: string } }) {
       <h1 className="mb-6 text-3xl font-bold text-gray-900">
         {params.org.charAt(0).toUpperCase() + params.org.slice(1)} Repositories
       </h1>
-      <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <ul className="space-y-2">
         {repos?.map(repo => (
           <RepoItem key={repo.id} repo={repo} />
         ))}

@@ -20,8 +20,13 @@ pub struct Org {
 #[derive(Deserialize, Serialize)]
 pub struct Repo {
     id: u32,
+    language: Option<String>,
     name: String,
-    pub updated_at: String,
+    open_issues_count: u32,
+    pushed_at: String,
+    stargazers_count: u32,
+    visibility: String,
+    watchers_count: u32,
 }
 
 #[derive(Deserialize, Serialize)]
@@ -30,13 +35,20 @@ pub struct RepoReadme {
 }
 
 #[derive(Deserialize, Serialize)]
+struct Actor {
+    login: String,
+}
+
+#[derive(Deserialize, Serialize)]
 struct WorkflowRun {
+    actor: Actor,
     conclusion: Option<String>,
     created_at: String,
+    html_url: String,
     id: u64,
     name: String,
-    html_url: String,
-    status: String
+    status: String,
+    updated_at: String,
 }
 
 #[derive(Deserialize, Serialize)]

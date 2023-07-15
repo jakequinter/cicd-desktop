@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { ArrowLeft } from '@phosphor-icons/react';
 import ReactMarkdown from 'react-markdown';
 import useSWR from 'swr';
 
@@ -23,7 +24,11 @@ export default function ReadMePage({ params }: { params: { name: string; org: st
 
   return (
     <div>
-      <button className="hover:underline" onClick={() => router.back()}>
+      <button
+        className="inline-flex items-center gap-x-1 rounded-full border border-gray-300 bg-gray-50 px-2 py-1 text-sm font-medium text-gray-900 hover:bg-gray-100"
+        onClick={() => router.back()}
+      >
+        <ArrowLeft size={13} />
         Back
       </button>
       <div className="markdown-body p-4">

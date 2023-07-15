@@ -13,10 +13,10 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <div className="flex h-screen flex-grow flex-col overflow-y-auto bg-gray-100">
-      <h1 className="p-2 py-4 text-left text-3xl font-semibold text-orange-500">flowlog</h1>
+    <div className="flex h-screen flex-grow flex-col overflow-y-auto bg-white">
+      <h1 className="py-4 text-center text-3xl font-semibold text-gray-900">flowlog</h1>
       <div className="flex flex-grow flex-col">
-        <nav className="mt-1 px-2" aria-label="Sidebar">
+        <nav className="mt-2.5 px-2" aria-label="Sidebar">
           <ul className="space-y-1">
             {orgs.map(org => (
               <Fragment key={org.id}>
@@ -24,8 +24,8 @@ export default function Nav() {
                   <Link
                     href={`/${org.login}`}
                     className={cn(
-                      pathname.includes(`/${org.login}`) ? `bg-gray-200 text-gray-900` : '',
-                      'group relative flex w-full cursor-default items-center rounded-md p-1.5 text-left hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-0'
+                      pathname.includes(`/${org.login}`) ? `bg-gray-100 text-gray-900` : '',
+                      'group relative flex w-full cursor-default items-center rounded-md p-1.5 text-left hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-0'
                     )}
                   >
                     <Image

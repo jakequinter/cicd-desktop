@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { ArrowLeft } from '@phosphor-icons/react';
 import useSWR from 'swr';
 
 import type { Action } from '@/types/org';
@@ -23,19 +24,16 @@ export default function ActionsPage({ params }: { params: { name: string; org: s
 
   return (
     <>
-      <button className="mb-4 hover:underline" onClick={() => router.back()}>
+      <button
+        className="mb-4 inline-flex items-center gap-x-1 rounded-full border border-gray-300 bg-gray-50 px-2 py-1 text-sm font-medium text-gray-900 hover:bg-gray-100"
+        onClick={() => router.back()}
+      >
+        <ArrowLeft size={13} />
         Back
       </button>
       <ul className="space-y-2">
         {data.workflow_runs.map(action => (
-          <ActionItem
-            key={action.id}
-            conclusion={action.conclusion}
-            created_at={action.created_at}
-            name={action.name}
-            url={action.html_url}
-            status={action.status}
-          />
+          <ActionItem key={action.id} action={action} />
         ))}
       </ul>
     </>

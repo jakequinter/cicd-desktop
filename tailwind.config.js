@@ -13,7 +13,7 @@ module.exports = {
     extend: {
       colors: {
         ...colors,
-        gray: colors.zinc,
+        gray: colors.slate,
       },
       fontSize: {
         sm: ['0.75rem', '1.125rem'],
@@ -28,6 +28,9 @@ module.exports = {
         '7xl': ['3.75rem', '1'],
         '8xl': ['4.5rem', '1'],
         '9xl': ['6rem', '1'],
+      },
+      screens: {
+        xs: '575px',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
