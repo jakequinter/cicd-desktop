@@ -33,14 +33,7 @@ export default function ActionsPage({ params }: { params: { name: string; org: s
       </button>
       <ul className="space-y-2">
         {data.workflow_runs.map(action => (
-          <ActionItem
-            key={action.id}
-            conclusion={action.conclusion}
-            created_at={action.created_at}
-            name={action.name}
-            url={action.html_url}
-            status={action.status}
-          />
+          <ActionItem key={action.id} action={action} />
         ))}
       </ul>
     </>

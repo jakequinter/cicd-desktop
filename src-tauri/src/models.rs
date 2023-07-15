@@ -35,13 +35,20 @@ pub struct RepoReadme {
 }
 
 #[derive(Deserialize, Serialize)]
+struct Actor {
+    login: String,
+}
+
+#[derive(Deserialize, Serialize)]
 struct WorkflowRun {
+    actor: Actor,
     conclusion: Option<String>,
     created_at: String,
+    html_url: String,
     id: u64,
     name: String,
-    html_url: String,
-    status: String
+    status: String,
+    updated_at: String,
 }
 
 #[derive(Deserialize, Serialize)]

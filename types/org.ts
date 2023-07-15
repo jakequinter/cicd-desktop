@@ -16,13 +16,20 @@ export type Repo = {
   watchers_count: number;
 };
 
+type Actor = {
+  login: string;
+};
+
 export type WorkflowRun = {
+  actor: Actor;
   conclusion?: string;
   created_at: string;
-  id: number;
-  name: string;
   html_url: string;
+  id: number;
+  login: string;
+  name: string;
   status: string;
+  updated_at: string;
 };
 
 export type Action = {
