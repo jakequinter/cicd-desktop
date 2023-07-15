@@ -69,31 +69,29 @@ export default function ActionItem({ action }: Props) {
   }
 
   return (
-    <li className="flex flex-col justify-between rounded-md border bg-white p-4 shadow-sm md:flex-row md:items-center">
-      <div>
-        <div className="flex gap-x-1">
-          {handleConclusionColor()}
-          <div className="flex flex-col space-y-2">
-            <Link
-              href={action.html_url}
-              className="max-w-xs truncate whitespace-nowrap text-xl font-semibold text-gray-900 hover:text-blue-700 hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {action.name}
-            </Link>
-            <p>
-              <span className="font-medium">Deploy #275:</span> Manually run by {action.actor.login}
-            </p>
-            <div className="flex gap-x-4 md:hidden md:flex-col md:gap-x-0">
-              <div className="inline-flex items-center gap-x-1 text-sm">
-                <Calendar size={14} />
-                <p>{createFormattedTime(action.created_at)}</p>
-              </div>
-              <div className="inline-flex items-center gap-x-1 text-sm">
-                <Calendar size={14} />
-                <p>{calculateTimeDifference(action.created_at, action.updated_at)}</p>
-              </div>
+    <li className="flex flex-col justify-between overflow-hidden rounded-md border bg-white p-4 shadow-sm md:flex-row md:items-center">
+      <div className="flex gap-x-1">
+        <div>{handleConclusionColor()}</div>
+        <div className="flex flex-col space-y-2">
+          <Link
+            href={action.html_url}
+            className="max-w-sm overflow-x-hidden truncate whitespace-nowrap text-xl font-semibold text-gray-900 hover:text-blue-700 hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {action.name}
+          </Link>
+          <p>
+            <span className="font-medium">Deploy #275:</span> Manually run by {action.actor.login}
+          </p>
+          <div className="flex gap-x-4 md:hidden md:flex-col md:gap-x-0">
+            <div className="inline-flex items-center gap-x-1 text-sm">
+              <Calendar size={14} />
+              <p>{createFormattedTime(action.created_at)}</p>
+            </div>
+            <div className="inline-flex items-center gap-x-1 text-sm">
+              <Clock size={14} />
+              <p>{calculateTimeDifference(action.created_at, action.updated_at)}</p>
             </div>
           </div>
         </div>
