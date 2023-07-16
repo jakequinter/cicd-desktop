@@ -4,11 +4,14 @@ import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { SignOut } from '@phosphor-icons/react';
 
+import useAuth from '@/hooks/useAuth';
 import useOrgs from '@/hooks/useOrgs';
 import cn from '@/utils/cn';
 
 export default function Nav() {
+  const { logout } = useAuth();
   const { orgs } = useOrgs();
   const pathname = usePathname();
 
@@ -44,6 +47,16 @@ export default function Nav() {
             ))}
           </ul>
         </nav>
+      </div>
+
+      <div className="p-2">
+        <button
+          className="inline-flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-600"
+          onClick={() => logout()}
+        >
+          <SignOut />
+          Sign out
+        </button>
       </div>
     </div>
   );
