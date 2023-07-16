@@ -8,7 +8,6 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('token', token);
     authGitHubToken(token);
   };
 

@@ -2,9 +2,9 @@
 
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
+import { useNavigate } from 'react-router-dom';
 
 import type { User } from '../types/user';
-import { useNavigate } from 'react-router-dom';
 
 type AuthContextProps = {
   token: string | null;
@@ -45,7 +45,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     const handleCookieChange = () => {
-    console.log('cookie changed');
       const newToken = localStorage.getItem('token');
       if (!newToken) {
         navigate('/login');

@@ -1,9 +1,9 @@
 import { createContext, ReactNode, useCallback, useEffect, useState } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
-
-import type { Org } from '../types/org';
-import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+
+import useAuth from '../hooks/useAuth';
+import type { Org } from '../types/org';
 
 type OrgContextProps = {
   orgs: Org[];
@@ -22,14 +22,13 @@ type OrgProviderProps = {
 };
 
 export const OrgProvider = ({ children }: OrgProviderProps) => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const { token } = useAuth();
   const [orgs, setOrgs] = useState<Org[]>([]);
   const [org, setOrg] = useState<Org | null>(null);
 
   const fetchUserOrgs = useCallback(async () => {
     const userOrgs = await invoke<Org[]>('get_user_orgs', { token });
-    console.log('userOrgs', userOrgs);
     setOrgs(userOrgs);
 
     if (userOrgs.length > 0) {

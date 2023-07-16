@@ -5,17 +5,14 @@ use crate::models::{Action, ApiResult, Org, Repo, Url, User, RepoReadme};
 pub fn get_user_orgs(token: &str) -> ApiResult<Vec<Org>> {
     let response = get_request(Url::WithBaseUrl("/user/orgs"), token)?;
     let data: Vec<_> = serde_json::from_str(&response).unwrap();
-    println!("Response: {}", data.len());
 
     Ok(data)
 }
 
 #[tauri::command]
 pub fn validate_token(token: &str) -> ApiResult<Option<User>> {
-    println!("Validating token: {}", token);
     let response = get_request(Url::WithBaseUrl("/user"), token)?;
     let data: serde_json::Value = serde_json::from_str(&response).unwrap();
-    println!("Response: {}", data);
 
     if data["login"].is_string() {
         let user = User {
