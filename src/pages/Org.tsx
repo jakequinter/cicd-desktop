@@ -1,9 +1,9 @@
-import useSWR from 'swr';
 import { useParams } from 'react-router-dom';
+import useSWR from 'swr';
 
-import type { Repo } from '../types/org';
-import fetcher from '../lib/fetcher';
 import useAuth from '../hooks/useAuth';
+import fetcher from '../lib/fetcher';
+import type { Repo } from '../types/org';
 
 // import RepoItem from './RepoItem';
 
@@ -21,11 +21,11 @@ export default function OrgPage() {
 
   return (
     <main>
-    {org && (
-      <h1 className="mb-6 text-3xl font-bold text-gray-900">
-        {org.charAt(0).toUpperCase() + org.slice(1)} Repositories
-      </h1>
-    )}
+      {org && (
+        <h1 className="mb-6 text-3xl font-bold text-gray-900">
+          {org.charAt(0).toUpperCase() + org.slice(1)} Repositories
+        </h1>
+      )}
       {/*<ul className="space-y-2">
         {repos?.map(repo => (
           <RepoItem key={repo.id} repo={repo} />
