@@ -1,8 +1,6 @@
-'use client';
+import React, { useState } from 'react';
 
-import { useState } from 'react';
-
-import useAuth from '@/hooks/useAuth';
+import useAuth from '../hooks/useAuth';
 
 export default function LoginPage() {
   const { authGitHubToken, error, setError } = useAuth();
@@ -10,6 +8,7 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log('token', token);
     authGitHubToken(token);
   };
 

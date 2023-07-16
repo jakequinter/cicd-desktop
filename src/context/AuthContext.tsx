@@ -1,10 +1,10 @@
 'use client';
 
 import { createContext, ReactNode, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { invoke } from '@tauri-apps/api/tauri';
 
-import type { User } from '@/types/user';
+import type { User } from '../types/user';
+import { useNavigate } from 'react-router-dom';
 
 type AuthContextProps = {
   token: string | null;
@@ -29,7 +29,7 @@ type AuthProviderProps = {
 };
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -39,13 +39,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setToken(token);
 
     if (!token) {
-      router.push('/login');
+      navigate('/login');
     }
-  }, [router, token]);
+  }, [navigate, token]);
 
   useEffect(() => {
     const handleCookieChange = () => {
+    console.log('cookie changed');
       const newToken = localStorage.getItem('token');
+      if (!newToken) {
+        navigate('/login');
+      }
       setToken(newToken);
     };
 
@@ -72,7 +76,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.removeItem('token');
     setToken(null);
     setUser(null);
-    router.push('/login');
+    navigate('/login');
   };
 
   return (

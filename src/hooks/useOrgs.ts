@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { OrgContext } from '@/context/OrgContext';
+import { OrgContext } from '../context/OrgContext';
 
 const useOrgs = () => {
   const { orgs, org, fetchUserOrgs } = useContext(OrgContext);

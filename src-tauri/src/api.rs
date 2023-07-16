@@ -24,4 +24,3 @@ pub fn get_request(url: Url, token: &str) -> ApiResult<String> {
 
     Ok(response_body)
 }
-
