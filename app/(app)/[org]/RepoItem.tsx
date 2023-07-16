@@ -53,7 +53,7 @@ export default function RepoItem({ repo }: Props) {
   }
 
   return (
-    <li className="flex flex-col justify-between rounded-md border bg-white p-4 shadow-sm xs:flex-row xs:items-center">
+    <li className="flex flex-col justify-between overflow-hidden rounded-md border bg-white p-4 shadow-sm xs:flex-row xs:items-center">
       <div>
         <div className="mb-2 flex items-center gap-x-2">
           <Link
@@ -62,9 +62,9 @@ export default function RepoItem({ repo }: Props) {
           >
             {repo.name}
           </Link>
-          <button className="inline-flex items-center rounded-full border border-gray-300 px-2 text-sm font-medium text-gray-900">
+          <span className="inline-flex items-center rounded-full border border-gray-300 px-2 text-sm font-medium text-gray-900">
             {repo.visibility.charAt(0).toUpperCase() + repo.visibility.slice(1)}
-          </button>
+          </span>
         </div>
 
         <div className="flex flex-col gap-x-4 sm:flex-row sm:items-center">

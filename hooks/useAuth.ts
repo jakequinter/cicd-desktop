@@ -3,9 +3,9 @@ import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 
 const useAuth = () => {
-  const { token, user, authGitHubToken, error, setError } = useContext(AuthContext);
+  const { token, user, authGitHubToken, logout, error, setError } = useContext(AuthContext);
 
-  return { token, user, authGitHubToken, error, setError };
+  return { token, user, authGitHubToken, logout, error, setError };
 };
 
 export default useAuth;

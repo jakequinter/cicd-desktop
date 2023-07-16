@@ -10,6 +10,7 @@ type AuthContextProps = {
   token: string | null;
   user: User | null;
   authGitHubToken: (token: string) => void;
+  logout: () => void;
   error: string | null;
   setError: (error: string | null) => void;
 };
@@ -18,6 +19,7 @@ export const AuthContext = createContext<AuthContextProps>({
   token: '',
   user: null,
   authGitHubToken: () => {},
+  logout: () => {},
   error: null,
   setError: () => {},
 });
@@ -66,12 +68,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  const logout = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+    setUser(null);
+    router.push('/login');
+  };
+
   return (
     <AuthContext.Provider
       value={{
         token,
         user,
         authGitHubToken,
+        logout,
         error,
         setError,
       }}
