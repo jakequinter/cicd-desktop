@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  box-sizing: border-box;
+  font-family: -apple-system, sans-serif;
+  font-size: 0.875rem;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #475569;
+  background-color: #f8fafc;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.markdown-body {
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  font-size: 0.875rem !important;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+  color: #18181b !important;
+}
+
+.markdown-body h1 {
+  font-size: 1.5rem !important;
+  border-bottom: 1px solid #cbd5e1 !important;
+}
+
+.markdown-body h2 {
+  font-size: 1.125rem !important;
+  border-bottom: 1px solid #cbd5e1 !important;
+}
+
+.markdown-body h3 {
+  font-size: 1rem !important;
+}
+
+.markdown-body a {
+  color: #3b82f6 !important;
+}
+
+.markdown-body code {
+  background-color: #e2e8f0 !important;
+}
+
+.markdown-body pre {
+  background-color: #e2e8f0 !important;
+}
+
+.markdown-body pre code {
+  color: #1e293b !important;
+}
+
+.markdown-body ul {
+  list-style-type: disc !important;
+}

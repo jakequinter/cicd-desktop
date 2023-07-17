@@ -1,5 +1,4 @@
-/** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors');
+/** @type {import('tailwindcss').Config} */ const colors = require('tailwindcss/colors');
 
 delete colors['lightBlue'];
 delete colors['warmGray'];
@@ -7,8 +6,8 @@ delete colors['trueGray'];
 delete colors['coolGray'];
 delete colors['blueGray'];
 
-module.exports = {
-  content: ['./components/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
