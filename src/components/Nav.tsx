@@ -47,7 +47,7 @@ export default function Nav() {
 
       <div className="p-2">
         <button
-          className="inline-flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-600"
+          className="inline-flex items-center gap-x-2 text-base text-gray-500 hover:text-gray-600"
           onClick={() => logout()}
         >
           <SignOut />

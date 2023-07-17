@@ -1,7 +1,7 @@
 import {
   Calendar,
   CheckCircle,
-  Circle,
+  CircleNotch,
   Clock,
   WarningOctagon,
   XCircle,
@@ -17,7 +17,7 @@ type Props = {
 export default function ActionItem({ action }: Props) {
   const handleConclusionColor = () => {
     if (action.status === 'in_progress') {
-      <Circle size={18} weight="fill" className="mt-1 text-yellow-600" />;
+      return <CircleNotch size={18} weight="fill" className="mt-1 animate-spin text-yellow-600" />;
     } else {
       switch (action.conclusion) {
         case 'success':
@@ -32,7 +32,9 @@ export default function ActionItem({ action }: Props) {
         case 'requested':
         case 'waiting':
         case 'pending':
-          <Circle size={18} weight="fill" className="mt-1 text-yellow-600" />;
+          return (
+            <CircleNotch size={18} weight="fill" className="mt-1 animate-spin text-yellow-600" />
+          );
         default:
           return <WarningOctagon size={18} weight="fill" className="mt-1 text-gray-600" />;
       }

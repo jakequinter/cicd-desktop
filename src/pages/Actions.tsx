@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useSWR from 'swr';
 
 import ActionItem from '../components/ActionItem';
-import Container from '../components/Container';
+import Loading from '../components/Loading';
 import useAuth from '../hooks/useAuth';
 import fetcher from '../lib/fetcher';
 import type { Action } from '../types/org';
@@ -17,11 +17,11 @@ export default function Actions() {
     fetcher
   );
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <Loading />;
   if (error || !data) return <div>failed to load</div>;
 
   return (
-    <Container>
+    <>
       <button
         className="mb-4 inline-flex items-center gap-x-1 rounded-full border border-gray-300 bg-gray-50 px-2 py-1 text-sm font-medium text-gray-900 hover:bg-gray-100"
         onClick={() => navigate(-1)}
@@ -34,6 +34,6 @@ export default function Actions() {
           <ActionItem key={action.id} action={action} />
         ))}
       </ul>
-    </Container>
+    </>
   );
 }
