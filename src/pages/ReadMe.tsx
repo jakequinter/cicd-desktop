@@ -29,7 +29,7 @@ export default function ReadMe() {
   return (
     <>
       <button
-        className="inline-flex items-center gap-x-1 rounded-full border border-gray-300 bg-gray-50 px-2 py-1 text-sm font-medium text-gray-900 hover:bg-gray-100"
+        className="mb-4 inline-flex items-center gap-x-1 rounded-full border border-gray-300 bg-gray-50 px-2 py-1 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-50 dark:hover:bg-gray-950"
         onClick={() => navigate(-1)}
       >
         <ArrowLeft size={13} />

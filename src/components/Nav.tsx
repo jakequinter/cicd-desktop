@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
 import { SignOut } from '@phosphor-icons/react';
-import { useTheme } from 'next-themes';
 import { Link, useLocation } from 'react-router-dom';
 
 import useAuth from '../hooks/useAuth';
@@ -9,11 +8,8 @@ import cn from '../utils/cn';
 
 export default function Nav() {
   const { pathname } = useLocation();
-  const { theme, setTheme } = useTheme();
   const { logout } = useAuth();
   const { orgs } = useOrgs();
-
-  console.log('theme', theme);
 
   return (
     <div className="flex h-screen flex-grow flex-col overflow-y-auto bg-white dark:bg-black">
@@ -53,14 +49,6 @@ export default function Nav() {
         </nav>
       </div>
 
-      <div className="p-2">
-        <button
-          className="inline-flex items-center gap-x-2 text-base text-gray-500 hover:text-gray-600 dark:text-gray-700 dark:hover:text-gray-600"
-          onClick={() => setTheme('system')}
-        >
-          Toggle theme
-        </button>
-      </div>
       <div className="p-2">
         <button
           className="inline-flex items-center gap-x-2 text-base text-gray-500 hover:text-gray-600 dark:text-gray-700 dark:hover:text-gray-600"

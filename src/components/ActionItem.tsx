@@ -71,13 +71,13 @@ export default function ActionItem({ action }: Props) {
   }
 
   return (
-    <li className="flex flex-col justify-between overflow-hidden rounded-md border bg-white p-4 shadow-sm md:flex-row md:items-center">
+    <li className="flex flex-col justify-between overflow-hidden rounded-md border bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950 md:flex-row md:items-center">
       <div className="flex gap-x-1">
         <div>{handleConclusionColor()}</div>
         <div className="flex flex-col space-y-2">
           <Link
             to={action.html_url}
-            className="max-w-sm overflow-x-hidden truncate whitespace-nowrap text-xl font-semibold text-gray-900 hover:text-blue-700 hover:underline"
+            className="max-w-sm overflow-x-hidden truncate whitespace-nowrap text-xl font-semibold text-gray-900 hover:text-blue-700 hover:underline dark:text-gray-50"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -18,7 +18,7 @@ export default function LoginPage() {
 
   return (
     <section className="mx-auto flex h-screen max-w-sm flex-col items-center justify-center">
-      <h1 className="mb-6 text-3xl font-semibold text-gray-900">flowlog</h1>
+      <h1 className="mb-6 text-3xl font-semibold text-gray-900 dark:text-gray-50">flowlog</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="mt-1">
@@ -27,7 +27,7 @@ export default function LoginPage() {
             name="token"
             type="password"
             autoFocus
-            className="rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 hover:ring-gray-400 focus:ring-gray-400 sm:text-sm sm:leading-6"
+            className="rounded-full border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 hover:ring-gray-400 focus:ring-gray-400 dark:bg-black dark:text-gray-50 dark:ring-gray-800 dark:placeholder:text-gray-700 dark:hover:ring-gray-700 dark:focus:ring-gray-700 sm:text-sm sm:leading-6"
             placeholder="Enter your GitHub token"
             value={token}
             onChange={handleOnChange}
@@ -37,7 +37,7 @@ export default function LoginPage() {
 
         <button
           type="submit"
-          className="mt-4 w-full rounded-full bg-black py-1.5 text-white hover:bg-opacity-90"
+          className="mt-4 w-full rounded-full bg-black py-1.5 text-white hover:bg-opacity-90 dark:bg-white dark:text-black"
         >
           Enter
         </button>
