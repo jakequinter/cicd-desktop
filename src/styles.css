@@ -9,8 +9,8 @@
   line-height: 24px;
   font-weight: 400;
 
-  color: #52525b;
-  background-color: #fafafa;
+  color: #475569;
+  background-color: #f8fafc;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,20 +19,10 @@
   -webkit-text-size-adjust: 100%;
 }
 
-.dark {
-  color: #71717a;
-  background-color: #000;
-}
-
 .markdown-body {
   background-color: #f8fafc !important;
   color: #475569 !important;
   font-size: 0.875rem !important;
-}
-
-.dark .markdown-body {
-  color: #71717a !important;
-  background-color: #000 !important;
 }
 
 .markdown-body h1,

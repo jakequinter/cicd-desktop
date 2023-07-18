@@ -1,4 +1,3 @@
-import { ThemeProvider } from 'next-themes';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 
 import Actions from '../src/pages/Actions';
@@ -15,22 +14,20 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <ThemeProvider attribute="class">
-        <AuthProvider>
-          <OrgProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
+      <AuthProvider>
+        <OrgProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
 
-              <Route path="/:org" element={<AuthedRoute />}>
-                <Route index element={<Org />} />
-                <Route path=":repo/readme" element={<ReadMe />} />
-                <Route path=":repo/actions" element={<Actions />} />
-              </Route>
-            </Routes>
-          </OrgProvider>
-        </AuthProvider>
-      </ThemeProvider>
+            <Route path="/:org" element={<AuthedRoute />}>
+              <Route index element={<Org />} />
+              <Route path=":repo/readme" element={<ReadMe />} />
+              <Route path=":repo/actions" element={<Actions />} />
+            </Route>
+          </Routes>
+        </OrgProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

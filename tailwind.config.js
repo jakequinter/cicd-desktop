@@ -12,7 +12,7 @@ export default {
     extend: {
       colors: {
         ...colors,
-        gray: colors.zinc,
+        gray: colors.slate,
       },
       fontSize: {
         sm: ['0.75rem', '1.125rem'],

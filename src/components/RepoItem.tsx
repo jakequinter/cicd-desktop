@@ -53,7 +53,7 @@ export default function RepoItem({ repo }: Props) {
   }
 
   return (
-    <li className="flex flex-col justify-between overflow-hidden rounded-md border bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950 xs:flex-row xs:items-center">
+    <li className="flex flex-col justify-between overflow-hidden rounded-md border bg-white p-4 shadow-sm xs:flex-row xs:items-center">
       <div>
         <div className="mb-2 flex items-center gap-x-2">
           <Link
@@ -62,7 +62,7 @@ export default function RepoItem({ repo }: Props) {
           >
             {repo.name}
           </Link>
-          <span className="inline-flex items-center rounded-full border border-gray-300 px-2 text-sm font-medium text-gray-900 dark:border-gray-800 dark:text-gray-600">
+          <span className="inline-flex items-center rounded-full border border-gray-300 px-2 text-sm font-medium text-gray-900">
             {repo.visibility.charAt(0).toUpperCase() + repo.visibility.slice(1)}
           </span>
         </div>
@@ -89,7 +89,7 @@ export default function RepoItem({ repo }: Props) {
       <div>
         <Link
           to={`/${org?.login}/${repo.name}/actions`}
-          className="mt-2 inline-flex w-full items-center justify-center gap-x-1 rounded-full border border-gray-300 bg-gray-50 px-2 py-1 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-950 xs:mt-0 xs:w-auto"
+          className="mt-2 inline-flex w-full items-center justify-center gap-x-1 rounded-full border border-gray-300 bg-gray-50 px-2 py-1 text-sm font-medium text-gray-900 hover:bg-gray-100 xs:mt-0 xs:w-auto"
         >
           <GitBranch size={14} />
           Actions
